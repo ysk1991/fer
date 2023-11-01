@@ -158,6 +158,7 @@ Recorder.get = function (callback, config) {
 				},
 				function (error) {
 					console.log('error:',error);
+					document.getElementById('error').innerHTML = error
 					switch (error.code || error.name) {
 						case 'PERMISSION_DENIED':
 						case 'PermissionDeniedError':
@@ -179,6 +180,8 @@ Recorder.get = function (callback, config) {
 			);
 		} else {
 			console.log('当前浏览器不支持录音功能。');
+			document.getElementById('error').innerHTML = 'navigator.getUserMedia 对象没有'
+
 		}
 	}
 };
