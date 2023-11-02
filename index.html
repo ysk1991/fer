@@ -14,19 +14,14 @@
     <body>
         <p>
             <audio autoplay></audio>
-            <input onclick="startRecording()" type="button" value="录录录录音222" />
-            <input onclick="stopRecording()" type="button" value="停停停停止" />
+            <input onclick="startRecording()" type="button" value="录音" />
+            <input onclick="stopRecording()" type="button" value="停止" />
             <br />
             <p id="recordingslist"></p>
             <div id="error"></div>
         </p>
         <script type="text/javascript" src="js/recorder.js"></script>
         <script>
-
-    //   if (navigator.mediaDevices.getUserMedia) {
-    //     // 最新标准API
-    //     navigator.mediaDevices.getUserMedia({ video: true, audio: true });
-    //   }
             var recorder;
             var audio = document.querySelector('audio');
             function startRecording() {
@@ -54,8 +49,6 @@
                 p.appendChild(hf);
                 recordingslist.appendChild(p);
             }
-        
-            
         </script>
     </body>
 </html>

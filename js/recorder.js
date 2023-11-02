@@ -1,6 +1,5 @@
 // 兼容
 window.URL = window.URL || window.webkitURL;
- 
 
 const Recorder = function (stream, config) {
 	config = config || {};
@@ -139,7 +138,6 @@ const Recorder = function (stream, config) {
 	// 音频采集
 	recorder.onaudioprocess = function (e) {
 		audioData.input(e.inputBuffer.getChannelData(0));
-		// record(e.inputBuffer.getChannelData(0));
 	};
 };
 
@@ -155,8 +153,7 @@ Recorder.get = function (callback, config) {
 			).then((stream) => {
 				const rec = new Recorder(stream, config);
 				callback(rec);
-			}).catch(err => {
-				document.getElementById('error').innerHTML = error
+			}).catch(error => {
 				switch (error.code || error.name) {
 					case 'PERMISSION_DENIED':
 					case 'PermissionDeniedError':
@@ -177,8 +174,6 @@ Recorder.get = function (callback, config) {
 			})
 		} else {
 			console.log('当前浏览器不支持录音功能。');
-			document.getElementById('error').innerHTML = 'navigator.getUserMedia 对象没有'
-
 		}
 	}
 };
