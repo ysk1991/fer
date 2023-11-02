@@ -1,7 +1,6 @@
 // 兼容
 window.URL = window.URL || window.webkitURL;
-navigator.getUserMedia =
-navigator.mediaDevices.getUserMedia || navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia;
+ 
 
 const Recorder = function (stream, config) {
 	config = config || {};
@@ -148,18 +147,11 @@ const Recorder = function (stream, config) {
 Recorder.canRecording = navigator.getUserMedia != null;
 // 获取录音机
 Recorder.get = function (callback, config) {
-	alert(1)
 	if (callback) {
-	alert(2)
-
-		if (navigator.getUserMedia) {
-	alert(3)
-
-			navigator.getUserMedia(
+		if (navigator.mediaDevices.getUserMedia) {
+			navigator.mediaDevices.getUserMedia(
 				{ audio: true } 
-			).then( (stream) => {
-	alert(4)
-
+			).then((stream) => {
 				const rec = new Recorder(stream, config);
 				callback(rec);
 			}).catch(err => {
