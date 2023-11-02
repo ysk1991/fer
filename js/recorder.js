@@ -148,11 +148,18 @@ const Recorder = function (stream, config) {
 Recorder.canRecording = navigator.getUserMedia != null;
 // 获取录音机
 Recorder.get = function (callback, config) {
+	alert(1)
 	if (callback) {
+	alert(2)
+
 		if (navigator.getUserMedia) {
+	alert(3)
+
 			navigator.getUserMedia(
 				{ audio: true } 
 			).then( (stream) => {
+	alert(4)
+
 				const rec = new Recorder(stream, config);
 				callback(rec);
 			}).catch(err => {
