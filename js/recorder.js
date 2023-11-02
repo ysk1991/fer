@@ -151,33 +151,30 @@ Recorder.get = function (callback, config) {
 	if (callback) {
 		if (navigator.getUserMedia) {
 			navigator.getUserMedia(
-				{ audio: true }, // 只启用音频
-				function (stream) {
-					const rec = new Recorder(stream, config);
-					callback(rec);
-				},
-				function (error) {
-					console.log('error:',error);
-					document.getElementById('error').innerHTML = error
-					switch (error.code || error.name) {
-						case 'PERMISSION_DENIED':
-						case 'PermissionDeniedError':
-							console.log('用户拒绝提供信息。');
-							break;
-						case 'NOT_SUPPORTED_ERROR':
-						case 'NotSupportedError':
-							console.log('浏览器不支持硬件设备。');
-							break;
-						case 'MANDATORY_UNSATISFIED_ERROR':
-						case 'MandatoryUnsatisfiedError':
-							console.log('无法发现指定的硬件设备。');
-							break;
-						default:
-							console.log('无法打开麦克风。');
-							break;
-					}
+				{ audio: true } 
+			).then( (stream) => {
+				const rec = new Recorder(stream, config);
+				callback(rec);
+			}).catch(err => {
+				document.getElementById('error').innerHTML = error
+				switch (error.code || error.name) {
+					case 'PERMISSION_DENIED':
+					case 'PermissionDeniedError':
+						console.log('用户拒绝提供信息。');
+						break;
+					case 'NOT_SUPPORTED_ERROR':
+					case 'NotSupportedError':
+						console.log('浏览器不支持硬件设备。');
+						break;
+					case 'MANDATORY_UNSATISFIED_ERROR':
+					case 'MandatoryUnsatisfiedError':
+						console.log('无法发现指定的硬件设备。');
+						break;
+					default:
+						console.log('无法打开麦克风。');
+						break;
 				}
-			);
+			})
 		} else {
 			console.log('当前浏览器不支持录音功能。');
 			document.getElementById('error').innerHTML = 'navigator.getUserMedia 对象没有'
