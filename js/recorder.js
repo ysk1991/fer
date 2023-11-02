@@ -1,7 +1,7 @@
 // 兼容
 window.URL = window.URL || window.webkitURL;
 navigator.getUserMedia =
-	navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia;
+navigator.mediaDevices.getUserMedia || navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia;
 
 const Recorder = function (stream, config) {
 	config = config || {};
