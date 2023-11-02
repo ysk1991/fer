@@ -14,7 +14,7 @@
     <body>
         <p>
             <audio autoplay></audio>
-            <input onclick="startRecording()" type="button" value="录录录录音4" />
+            <input onclick="startRecording()" type="button" value="录录录录音111" />
             <input onclick="stopRecording()" type="button" value="停停停停止" />
             <br />
             <p id="recordingslist"></p>
@@ -23,12 +23,10 @@
         <script type="text/javascript" src="js/recorder.js"></script>
         <script>
 
-function getUserMedia(constrains) {
       if (navigator.mediaDevices.getUserMedia) {
         // 最新标准API
         navigator.mediaDevices.getUserMedia({ video: true, audio: true });
       }
-    }
             // var recorder;
             // var audio = document.querySelector('audio');
             // function startRecording() {
