@@ -14,7 +14,7 @@
     <body>
         <p>
             <audio autoplay></audio>
-            <input onclick="startRecording()" type="button" value="录录录录音1" />
+            <input onclick="startRecording()" type="button" value="录录录录音2" />
             <input onclick="stopRecording()" type="button" value="停停停停止" />
             <br />
             <p id="recordingslist"></p>
@@ -35,15 +35,6 @@ function getUserMedia(constrains) {
       if (navigator.mediaDevices.getUserMedia) {
         // 最新标准API
         navigator.mediaDevices.getUserMedia(constrains).then(stream => { success(stream); }).catch(err => { error(err); });
-      } else if (navigator.webkitGetUserMedia) {
-        // webkit内核浏览器
-        navigator.webkitGetUserMedia(constrains).then(stream => { success(stream); }).catch(err => { error(err); });
-      } else if (navigator.mozGetUserMedia) {
-        // Firefox浏览器
-        navigator.mozGetUserMedia(constrains).then(stream => { success(stream); }).catch(err => { error(err); });
-      } else if (navigator.getUserMedia) {
-        // 旧版API
-        navigator.getUserMedia(constrains).then(stream => { success(stream); }).catch(err => { error(err); });
       }
     }
     // 成功的回调函数
