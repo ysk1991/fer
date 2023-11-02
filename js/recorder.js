@@ -146,7 +146,6 @@ Recorder.canRecording = navigator.getUserMedia != null;
 // 获取录音机
 Recorder.get = function (callback, config) {
 	if (callback) {
-		alert(navigator.mediaDevices.getUserMedia)
 		if (navigator.mediaDevices.getUserMedia) {
 			navigator.mediaDevices.getUserMedia(
 				{ audio: true } 
