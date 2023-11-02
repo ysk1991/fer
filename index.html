@@ -14,7 +14,7 @@
     <body>
         <p>
             <audio autoplay></audio>
-            <input onclick="startRecording()" type="button" value="录录录录音" />
+            <input onclick="startRecording()" type="button" value="录录录录音1" />
             <input onclick="stopRecording()" type="button" value="停停停停止" />
             <br />
             <p id="recordingslist"></p>
@@ -22,33 +22,65 @@
         </p>
         <script type="text/javascript" src="js/recorder.js"></script>
         <script>
-            var recorder;
-            var audio = document.querySelector('audio');
-            function startRecording() {
-                Recorder.get(function(rec) {
-                    recorder = rec;
-                    recorder.start();
-                }, {
-                    sampleBits: 16,
-                    sampleRate: 16000
-                });
-            }
-            function stopRecording() {
-                recorder.stop();
-                var blob = recorder.getBlob();
-                var url = URL.createObjectURL(blob);
-                var p = document.createElement('p');
-                var au = document.createElement('audio');
-                var hf = document.createElement('a');
-                au.controls = true;
-                au.src = url;
-                hf.href = url;
-                hf.download = new Date().toISOString() + '.wav';
-                hf.innerHTML = hf.download;
-                p.appendChild(au);
-                p.appendChild(hf);
-                recordingslist.appendChild(p);
-            }
+
+if (navigator.mediaDevices.getUserMedia || navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia) {
+  this.getUserMedia({ video: true, audio: true }); // 调用用户媒体设备，访问摄像头、录音
+} else {
+    document.getElementById('error').innerHTML ="你的浏览器不支持访问用户媒体设备"
+}
+
+
+function getUserMedia(constrains) {
+      let that = this;
+      if (navigator.mediaDevices.getUserMedia) {
+        // 最新标准API
+        navigator.mediaDevices.getUserMedia(constrains).then(stream => { success(stream); }).catch(err => { error(err); });
+      } else if (navigator.webkitGetUserMedia) {
+        // webkit内核浏览器
+        navigator.webkitGetUserMedia(constrains).then(stream => { success(stream); }).catch(err => { error(err); });
+      } else if (navigator.mozGetUserMedia) {
+        // Firefox浏览器
+        navigator.mozGetUserMedia(constrains).then(stream => { success(stream); }).catch(err => { error(err); });
+      } else if (navigator.getUserMedia) {
+        // 旧版API
+        navigator.getUserMedia(constrains).then(stream => { success(stream); }).catch(err => { error(err); });
+      }
+    }
+    // 成功的回调函数
+    function success(stream) {
+        document.getElementById('error').innerHTML ="已点击允许,开启成功"
+    }
+    // 异常的回调函数
+    function error(error) {
+        document.getElementById('error').innerHTML = error.name+ error.message
+    }
+            // var recorder;
+            // var audio = document.querySelector('audio');
+            // function startRecording() {
+            //     Recorder.get(function(rec) {
+            //         recorder = rec;
+            //         recorder.start();
+            //     }, {
+            //         sampleBits: 16,
+            //         sampleRate: 16000
+            //     });
+            // }
+            // function stopRecording() {
+            //     recorder.stop();
+            //     var blob = recorder.getBlob();
+            //     var url = URL.createObjectURL(blob);
+            //     var p = document.createElement('p');
+            //     var au = document.createElement('audio');
+            //     var hf = document.createElement('a');
+            //     au.controls = true;
+            //     au.src = url;
+            //     hf.href = url;
+            //     hf.download = new Date().toISOString() + '.wav';
+            //     hf.innerHTML = hf.download;
+            //     p.appendChild(au);
+            //     p.appendChild(hf);
+            //     recordingslist.appendChild(p);
+            // }
         
             
         </script>
