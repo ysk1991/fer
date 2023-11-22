@@ -1,54 +1,39 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <title>wav test</title>
-    </head>
-    <style>
-        input{
-            width: 200px;
-            height: 100px;
-            font-size: 30px;
-        }
-    </style>
-    <body>
-        <p>
-            <audio autoplay></audio>
-            <input onclick="startRecording()" type="button" value="录音" />
-            <input onclick="stopRecording()" type="button" value="停止" />
-            <br />
-            <p id="recordingslist"></p>
-            <div id="error"></div>
-        </p>
-        <script type="text/javascript" src="js/recorder.js"></script>
-        <script>
-            var recorder;
-            var audio = document.querySelector('audio');
-            function startRecording() {
-                Recorder.get(function(rec) {
-                    recorder = rec;
-                    recorder.start();
-                }, {
-                    sampleBits: 16,
-                    sampleRate: 16000
-                });
-            }
-            function stopRecording() {
-                recorder.stop();
-                var blob = recorder.getBlob();
-                var url = URL.createObjectURL(blob);
-                var p = document.createElement('p');
-                var au = document.createElement('audio');
-                var hf = document.createElement('a');
-                au.controls = true;
-                au.src = url;
-                hf.href = url;
-                hf.download = new Date().toISOString() + '.wav';
-                hf.innerHTML = hf.download;
-                p.appendChild(au);
-                p.appendChild(hf);
-                recordingslist.appendChild(p);
-            }
-        </script>
-    </body>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title></title>
+    <script>
+      !(function (p) {
+        "use strict";
+        !(function (t) {
+          var s = window,
+            e = document,
+            i = p,
+            c = "./js/sdk.js",
+            n = e.createElement("script"),
+            r = e.getElementsByTagName("script")[0];
+          (n.type = "text/javascript"),
+            n.setAttribute("charset", "UTF-8"),
+            (n.async = !0),
+            (n.src = c),
+            (n.id = "LA_COLLECT"),
+            (i.d = n);
+          var o = function () {
+            s.LA.ids.push(i);
+          };
+          s.LA ? s.LA.ids && o() : ((s.LA = p), (s.LA.ids = []), o()),
+            r.parentNode.insertBefore(n, r);
+        })();
+      })({ id: "JuSxXIvOMGPBMkpo", ck: "JuSxXIvOMGPBMkpo" });
+    </script>
+  </head>
+
+  <body>
+    <button id="serial-open">打开文件柜</button>
+    <button id="serial-close">关闭文件柜</button>
+    <script src="js/common.js"></script>
+  </body>
 </html>
