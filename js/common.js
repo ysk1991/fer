@@ -4,7 +4,7 @@
   }
   let serialPort = null;
   console.log("开始");
-
+  let flag = 0;
   //串口事件监听
   navigator.serial.addEventListener("connect", (e) => {
     serialPort = e.target;
@@ -79,12 +79,16 @@
 
   //串口数据收发
   async function send(code) {
-    navigator.serial.requestPort().then(async (port) => {
-      //关闭旧的串口
-      serialPort?.close();
-      await serialPort?.forget();
-      serialPort = port;
-    });
+    if (flag === 0) {
+      navigator.serial.requestPort().then(async (port) => {
+        flag = 1;
+        //关闭旧的串口
+        // serialPort?.close();
+        // await serialPort?.forget();
+        serialPort = port;
+      });
+    }
+
     console.log("code: ", code);
     await sendHex(code);
   }
