@@ -80,13 +80,8 @@
   //串口数据收发
   async function send(code) {
     if (flag === 0) {
-      navigator.serial.requestPort().then(async (port) => {
-        flag = 1;
-        //关闭旧的串口
-        // serialPort?.close();
-        // await serialPort?.forget();
-        serialPort = port;
-      });
+      serialPort = await navigator.serial.requestPort();
+      flag = 1;
     }
 
     console.log("code: ", code);
