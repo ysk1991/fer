@@ -9,8 +9,11 @@ window.thirdPartyNative = (function () {
   script.type = 'text/javascript';
   script.src = '//tftb.sczwfw.gov.cn/jssdk/index.js';
   script.async = true;
-  document.head.insertBefore(script);
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(script, s);
+//   document.body.appendChild(script);
 
+ 
   // TODO: async load
   script.onload = () => {
     console.log('JSSDK-API 加载成功');
