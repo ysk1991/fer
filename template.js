@@ -8,12 +8,12 @@ window.thirdPartyNative = (function () {
   const script = document.createElement('script');
   script.type = 'text/javascript';
   script.src = '//tftb.sczwfw.gov.cn/jssdk/index.js';
-  var s = document.getElementsByTagName("script")[0];
-  s.parentNode.insertBefore(script, s);
-//   document.body.appendChild(script);
+//   script.async = true;
+//   document.head.appendChild(script);
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(script, s);
 
- 
-  // TODO: async load
+  // // TODO: async load
   script.onload = () => {
     console.log('JSSDK-API 加载成功');
     console.log(window.lightAppJssdk);
