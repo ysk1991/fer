@@ -9,7 +9,7 @@ window.thirdPartyNative = (function () {
   script.type = 'text/javascript';
   script.src = '//tftb.sczwfw.gov.cn/jssdk/index.js';
   script.async = true;
-  document.head.appendChild(script);
+  document.head.insertBefore(script);
 
   // TODO: async load
   script.onload = () => {
