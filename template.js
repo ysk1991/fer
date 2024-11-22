@@ -8,7 +8,6 @@ window.thirdPartyNative = (function () {
   const script = document.createElement('script');
   script.type = 'text/javascript';
   script.src = '//tftb.sczwfw.gov.cn/jssdk/index.js';
-  script.async = true;
   var s = document.getElementsByTagName("script")[0];
   s.parentNode.insertBefore(script, s);
 //   document.body.appendChild(script);
