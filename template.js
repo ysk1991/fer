@@ -14,24 +14,6 @@ window.iframeLoad = function () {
   window.lightAppJssdk =
     document.getElementById('iframe').contentWindow.lightAppJssdk;
   window.thirdPartyNative = (function () {
-    // 获取操作系统
-    const os = window.SMGNativeJS.mobilePlatform; // ios/android/harmonyos
-    // 判断是否指定 userAgent, 如是否天府通办政务渠道
-    const isMyApp = window.SMGNativeJS.isMyApp('xxxxx'); // true / false
-
-    // 引入 天府通办 jssdk
-    // const script = document.createElement('script');
-    // script.type = 'text/javascript';
-    // script.src = '//tftb.sczwfw.gov.cn/jssdk/index.js';
-    // script.async = true;
-    // document.head.appendChild(script);
-
-    // // // TODO: async load
-    // script.onload = () => {
-    //   console.log('JSSDK-API 加载成功');
-    //   console.log(window.lightAppJssdk);
-    //   console.log(Object.keys(window));
-    // };
     return {
       closeView: (json, responseCallback) => {
         // todo
@@ -75,7 +57,15 @@ window.iframeLoad = function () {
       // },
     };
   })();
+  window.SMGNativeJS.commonuseTypes['3rd'] = window.thirdPartyNative;
 };
+
+const iframe = document.createElement('iframe');
+iframe.id = 'iframe';
+iframe.src = './inner.html';
+iframe.style.display = 'none';
+iframe.onload = window.iframeLoad;
+document.body.appendChild(iframe);
 
 // 业务调用
 // SMGNativeJS.commonuseTypes.closeView(
