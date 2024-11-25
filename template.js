@@ -10,7 +10,7 @@ const loadScript = (src, callback) => {
   };
   document.head.appendChild(script);
 };
-window.iframeLoad = function () {
+window.thirdNativeIframeLoad = function () {
   window.lightAppJssdk =
     document.getElementById('iframe').contentWindow.lightAppJssdk;
   window.thirdPartyNative = (function () {
@@ -62,9 +62,9 @@ window.iframeLoad = function () {
 
 const iframe = document.createElement('iframe');
 iframe.id = 'iframe';
-iframe.src = './inner.html';
+iframe.src = 'https://etax.sichuan.chinatax.gov.cn/scdzswj-public-app/tftbNativeSdk.html';
 iframe.style.display = 'none';
-iframe.onload = window.iframeLoad;
+iframe.onload = window.thirdNativeIframeLoad;
 document.body.appendChild(iframe);
 
 // 业务调用
